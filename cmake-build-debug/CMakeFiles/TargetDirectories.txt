@@ -1,0 +1,4 @@
+/mnt/c/Users/Димасик/Desktop/PROJECTS/PGP/RK1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Димасик/Desktop/PROJECTS/PGP/RK1/cmake-build-debug/CMakeFiles/RK2.dir
+/mnt/c/Users/Димасик/Desktop/PROJECTS/PGP/RK1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Димасик/Desktop/PROJECTS/PGP/RK1/cmake-build-debug/CMakeFiles/RK1.dir
