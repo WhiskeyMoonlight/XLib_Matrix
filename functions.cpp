@@ -1,4 +1,4 @@
-#include "DetGraphics.h"
+#include "DetGraphics.hpp"
 
 GC CreateContext(Display* dpy) {
     GC gc = DefaultGC(dpy, DefaultScreen(dpy));

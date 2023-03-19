@@ -1,4 +1,4 @@
-#include "DetGraphics.h"
+#include "DetGraphics.hpp"
 
 using namespace std;
 
