@@ -215,7 +215,7 @@ int det(const Matrix &origin, int *value) {
                     return -1;
                 }
                 int det_temp = temp;
-                *value += degree * origin.matrix[i] * det_temp;
+                *value += degree * origin.matrix.at(i) * det_temp;
                 temp = 0;
                 degree *= -1;
             }

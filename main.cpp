@@ -84,7 +84,6 @@ int main(int argc, char* argv[]) {
     Window det_win = createDet(dpy, main, matrix.size);
     drawDet(dpy, det_win, gc, 0, matrix.size);
     dispatch(dpy, win_arr, gc, matrix, det_win);
-
     matrix.deleteMatrix();
     stop(dpy, main, win_arr, det_win);
 
