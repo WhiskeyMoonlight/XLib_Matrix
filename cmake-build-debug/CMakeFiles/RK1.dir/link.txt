@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/RK1.dir/Graphics.cpp.o CMakeFiles/RK1.dir/GameHandler.cpp.o  -o RK1 
