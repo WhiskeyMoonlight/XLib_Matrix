@@ -11,10 +11,10 @@
 #include <cmath>
 #include <string>
 
-#define numWidth 40						//Ширина ячейки
-#define numHeight 1.2*numWidth				//Высота ячейки
-#define mainWidth numWidth * 3				//Ширина главного окна
-#define mainHeight numHeight * 2	//Высота главного окна
+#define numWidth 40
+#define numHeight 1.2*numWidth
+#define mainWidth numWidth * 3
+#define mainHeight numHeight * 2
 
 
 

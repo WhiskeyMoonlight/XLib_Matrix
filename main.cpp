@@ -24,18 +24,24 @@ int rekey(XEvent* event, GC gc, const std::vector<Window>& win_arr, Matrix& matr
     return 0;
 }
 
-void dispatch(Display* dpy, std::vector<Window> win_arr, GC gc, Matrix& matrix, Window det_win) {
+void dispatch(Display* dpy, const vector<Window>& win_arr, GC gc, Matrix& matrix, Window det_win) {
     XEvent event;
     int done = 0;
     Window win;
     int i = 0;
+    bool exposed_or_not = false;
     int det_val = 0;
     while(done == 0) {
         XNextEvent(dpy, &event);
+        if ( event.type == Expose && exposed_or_not == false) {
+            draw(dpy, win_arr, gc);
+            drawDet(dpy, det_win, gc, 0, matrix.size);
+            exposed_or_not = true;
+        }
         switch (event.type) {
             case ButtonPress:
                 win = event.xkey.window;
-                for (i = 0; win != win_arr[i]; ++i) ;
+                for (i = 0; win != win_arr.at(i); ++i) ;
                 det_val = 0;
                 change(dpy, win, gc, i, matrix);
                 det(matrix, &det_val);
@@ -75,14 +81,12 @@ int main(int argc, char* argv[]) {
     dpy = XOpenDisplay(nullptr);
     gc = CreateContext(dpy);
     main = CreateMainWindow(dpy, siz);
-    std::vector<Window> win_arr;
+    vector<Window> win_arr;
     win_arr.resize(matrix.size*matrix.size);
     for (int i=0; i < win_arr.size(); ++i) {
-            win_arr[i] = CreateMatrixWindow(dpy, main, i, matrix.size);
+            win_arr.at(i) = CreateMatrixWindow(dpy, main, i, matrix.size);
     }
-    draw(dpy, win_arr, gc);
     Window det_win = createDet(dpy, main, matrix.size);
-    drawDet(dpy, det_win, gc, 0, matrix.size);
     dispatch(dpy, win_arr, gc, matrix, det_win);
     matrix.deleteMatrix();
     stop(dpy, main, win_arr, det_win);

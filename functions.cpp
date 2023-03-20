@@ -27,8 +27,8 @@ Window CreateMainWindow(Display* dpy, int siz) {
                         (CWOverrideRedirect | CWBackPixel | CWEventMask ),
                         &attr);
     hint.flags = (PMinSize | PPosition | PMaxSize);
-    hint.min_width = hint.max_width = mainWidth;
-    hint.min_height = hint.max_height = mainHeight;
+    hint.min_width = hint.max_width = mainWidth + siz * numWidth;
+    hint.min_height = hint.max_height = mainHeight + siz * numHeight;
     hint.x = x;
     hint.y = y;
 
@@ -50,13 +50,13 @@ Window CreateMatrixWindow(Display* dpy, Window main, int index, int siz) {
 
     attr.override_redirect = False;
     attr.background_pixel = WhitePixel(dpy, DefaultScreen(dpy));
-    attr.event_mask = (ButtonPressMask | KeyPressMask);
+    attr.event_mask = (ButtonPressMask | KeyPressMask | ExposureMask);
 
     scr = DefaultScreen(dpy);
 
     w = numWidth;
     h = numHeight;
-    x = mainWidth / 2 + _i * numWidth;		//Позиция по x определяется разрядом машинного слова, под который создаётся ячейка. Считается как отклонение на (16 - digit) ячеек от центра
+    x = mainWidth / 2 + _i * numWidth;
     y = mainHeight / 9 + _j * numHeight;
 
     win = XCreateWindow(dpy, main, x, y, w, h, 1,
@@ -100,7 +100,7 @@ void drawDet(Display* dpy, Window win, GC gc, int det_val, int siz) {
     }
     const char* char_det = string_det.c_str();
 
-    XDrawString(dpy, win, gc, numWidth/2-5, numHeight/2+6, char_det, string_det.size());
+    XDrawString(dpy, win, gc, numWidth/2-15, numHeight/2+10, char_det, string_det.size());
 }
 
 void change(Display* dpy, Window win, GC gc, int i, Matrix& matrix) {
